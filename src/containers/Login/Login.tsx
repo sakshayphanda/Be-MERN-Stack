@@ -2,8 +2,25 @@ import React, { useState, Fragment } from "react";
 import "./Login.sass";
 import logo from "../../assets/logo.svg";
 import * as Mat from "@material-ui/core";
+import Axios from "axios";
+import { BASE_URL } from "../../models/constants";
+import { AuthRoutes } from "../../models/enums/routes.enum";
+
 function Login() {
   const [currentPageLogin, setcurrentPageLogin] = useState(true);
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState<string>();
+  const [message, setmessage] = useState<string>()
+  const loginClicked = () => {
+    Axios.post(BASE_URL + AuthRoutes.LOG_IN, {
+      email: email,
+      password: password,
+    }).then(
+      response => {
+        setmessage('log in success');
+      }
+    );
+  };
   function loginRegisterToggle(event: any) {
     setcurrentPageLogin(() => {
       if (currentPageLogin) {
@@ -28,33 +45,44 @@ function Login() {
 
         <form className="form">
           <div className="form__inputs">
-            <Mat.TextField
-              className="textField"
-              variant="outlined"
-              label="First Name"
-            ></Mat.TextField>
-            <Mat.TextField
-              className="textField"
-              variant="outlined"
-              label="Last Name"
-            ></Mat.TextField>
             {!currentPageLogin && (
               <Fragment>
                 <Mat.TextField
                   className="textField"
                   variant="outlined"
-                  label="Email"
+                  label="First Name"
                 ></Mat.TextField>
                 <Mat.TextField
                   className="textField"
                   variant="outlined"
-                  label="Password"
+                  label="Last Name"
                 ></Mat.TextField>
               </Fragment>
             )}
+            <Mat.TextField
+              className="textField"
+              variant="outlined"
+              label="Email"
+              value={email}
+              onChange={(ev)=> setemail(ev.target.value)}
+            ></Mat.TextField>
+            <Mat.TextField
+            type="password"
+              className="textField"
+              variant="outlined"
+              label="Password"
+              onChange={(ev)=> setpassword(ev.target.value)}
+            ></Mat.TextField>
           </div>
+          {message && <div className="message">
+          { message }
+        </div>}
           <div className="form__buttons">
-            <Mat.Button variant="contained" color="primary">
+            <Mat.Button
+              variant="contained"
+              color="primary"
+              onClick={loginClicked}
+            >
               {currentPageLogin ? "Login" : "Register"}
             </Mat.Button>
             <Mat.Button
