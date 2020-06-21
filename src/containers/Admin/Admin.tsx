@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './Admin.module.sass';
+import './Admin.sass';
 
 const Admin: React.FC = () => (
-  <div className={styles.Admin}>
+  <div className="Admin">
     Admin Component
   </div>
 );
