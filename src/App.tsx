@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.sass';
-import TopNavigation from './containers/top-navigation/top-navigation';
+import Authentication from './containers/Authentication/Authentication';
 
 function App() {
   return (
     <div className="App">
-      <TopNavigation></TopNavigation> 
+      <Authentication></Authentication> 
     </div>
   );
 }

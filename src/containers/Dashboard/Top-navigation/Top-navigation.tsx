@@ -1,6 +1,6 @@
 import React from "react";
-import logo from '../../logo.svg';
-import './top-navigation.sass';
+import logo from '../../../assets/logo.svg';
+import './Top-navigation.sass';
 import { connect } from 'react-redux';
 
 function TopNavigation() {

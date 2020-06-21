@@ -1,0 +1,117 @@
+input
+  border: none
+  background: #f1f1f1
+  border-radius: 5px
+  outline: none
+  padding: 5px
+  height: 50px
+  margin: 5px
+
+.login
+  position: relative
+  height: 100%
+  background: linear-gradient(90deg, rgba(111,102,255,1) 18%, rgba(18,194,255,1) 73%, rgba(0,212,255,1) 100%)
+  &__content
+    position: absolute
+    left: 0px
+    box-shadow: var(--cardBoxShadow)
+    padding: 10px
+    border-radius: 5px
+    width: 60%
+    height: 100%
+    display: flex
+    flex-direction: column
+    background: #f6f6f6
+    box-sizing: border-box
+    &.log-in
+      animation: slide-back 0.5s backwards
+    &.sign-up
+      left: unset
+      animation: slide 0.5s forwards
+    .social-signin
+      display: flex
+      align-items: center
+      justify-content: center
+      padding: 10px
+      button
+        margin: 5px
+    .title
+      font-size: 3rem
+      flex: 2
+      display: flex
+      color: var(--primary)
+      justify-content: center
+      font-weight: 600
+      height: 40px
+      align-items: center
+      .logo
+        height: 100%
+    .auth-type
+      font-size: 1.8rem
+      flex: 2
+      display: flex
+      color: var(--primary)
+      font-weight: 600
+      justify-content: center
+      align-items: center
+    .form
+      flex: 9
+      display: flex
+      flex-direction: column
+      align-items: center
+      padding: 50px
+      &__inputs
+        display: flex
+        flex-direction: column
+        width: 100%
+        min-height: 300px
+        .textField
+            margin: 10px
+        .message
+          height: 50px
+          padding: 4px
+          color: green
+          background: lightgreen
+          display: flex
+          align-items: center
+          margin: 5px
+          &.error
+            color: red
+            background: pink
+            padding: 10px
+            border-radius: 5px
+      &__buttons
+        display: flex
+        justify-content: center
+        width: 100%
+        height: 50px
+        Button
+          margin: 5px
+
+@keyframes slide
+  0%
+    right: 40%
+  100%
+    right: 0
+
+@keyframes slide-back
+  0%
+    left: 40%
+  100%
+    left: 0
+
+@media screen and ( max-width: 600px )
+  .login
+    &__content
+      width: 90%
+  @keyframes slide
+    0%
+      right: 10%
+    100%
+      right: 0
+
+  @keyframes slide-back
+    0%
+      left: 10%
+    100%
+      left: 0
