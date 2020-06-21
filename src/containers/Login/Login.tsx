@@ -8,9 +8,9 @@ import { AuthRoutes } from "../../models/enums/routes.enum";
 
 function Login() {
   const [currentPageLogin, setcurrentPageLogin] = useState(true);
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState<string>();
-  const [message, setmessage] = useState<string>()
+  const [email, setemail] = useState<string>('');
+  const [password, setpassword] = useState<string>('');
+  const [message, setmessage] = useState<string>('')
   const loginClicked = () => {
     Axios.post(BASE_URL + AuthRoutes.LOG_IN, {
       email: email,
@@ -22,6 +22,9 @@ function Login() {
     );
   };
   function loginRegisterToggle(event: any) {
+    setemail('');
+    setpassword('');
+    setmessage('');
     setcurrentPageLogin(() => {
       if (currentPageLogin) {
         return false;
@@ -71,6 +74,7 @@ function Login() {
               className="textField"
               variant="outlined"
               label="Password"
+              value={password}
               onChange={(ev)=> setpassword(ev.target.value)}
             ></Mat.TextField>
           </div>
