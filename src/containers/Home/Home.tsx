@@ -50,6 +50,7 @@ class Home extends React.PureComponent {
 
   shouldComponentUpdate(nextProps: any, nextState:any) {
     /**
+     * RARE usecase
      * CHecked automatically with the Pure component
      * Invoked immediately after updating occurs. 
      * This method is not called for the initial render.
@@ -59,6 +60,7 @@ class Home extends React.PureComponent {
 
   getSnapshotBeforeUpdate(prevProps: {}, prevState: {}) {
     /**
+     * RARE Usecase
      * invoked right before the most recently rendered output is committed to e.g. the DOM.
      * It enables your component to capture some information from the DOM (e.g. scroll position) before 
      * it is potentially changed. 
