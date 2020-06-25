@@ -4,12 +4,12 @@ import Login from '../Login/Login';
 import Home from '../Home/Home';
 
 const Authentication: React.FC = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setisLoggedIn] = useState(true);
   useEffect(() => {
     return () => {};
   }, []);
 
-  return <>{!isLoggedIn ? <Login></Login> : <Home></Home>}</>;
+  return (<>{!isLoggedIn ? <Login></Login> : <Home></Home>}</>);
 };
 
 export default Authentication;

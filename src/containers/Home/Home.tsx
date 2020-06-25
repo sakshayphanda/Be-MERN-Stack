@@ -15,10 +15,16 @@ class Home extends React.PureComponent {
     };
   }
 
-  static getDerivedStateFromProps(props: any, state: any) {
+  static getDerivedStateFromProps(latestprops: any, lateststate: any) {
+    console.log('getDerivedStateFromProps', latestprops, lateststate);
+    return {
+      abc: 'a'
+    };
     /**
      * Called right before th render method.
      * Used RARELY .
+     * Only one purpose. 
+     * It enables a component to update its internal state as the result of changes in props.
      * Can be used for implementing a <Transition> component that compares its 
      * previous and next children to decide which of them to animate in and out.
      */
@@ -27,6 +33,8 @@ class Home extends React.PureComponent {
   // componentWillMount() {} //deprecated
 
   render() {
+    console.log('render');
+    
     /**
      * REQUIRED METHOD
      * It is used to render JSx elements into the DOM
@@ -34,11 +42,18 @@ class Home extends React.PureComponent {
      */
     return (
     <div>
+      Home it is
     </div>
     );
   }
 
   componentDidMount() {
+    console.log('did mount');
+
+    this.setState({
+      data: 'abc'
+    });
+    
     /**
      * Invoked immediately after a component is mounted (inserted into the DOM tree)
      * For side-effects or subscriptions(API calls) 
@@ -48,17 +63,24 @@ class Home extends React.PureComponent {
 
   // componentWillReceiveProps() {} legacy deprecated
 
-  shouldComponentUpdate(nextProps: any, nextState:any) {
-    /**
-     * RARE usecase
-     * CHecked automatically with the Pure component
-     * Invoked immediately after updating occurs. 
-     * This method is not called for the initial render.
-     */
-    return true; // if false the render, getSnapshotBeforeUpdate and componentDidUpdate methods wont be called
-  }
+
+  // Called automatically in the case of purecomponent
+  
+  // shouldComponentUpdate(nextProps: any, nextState:any) {
+  //   console.log('shouldComponentUpdate', nextProps, nextState);
+
+  //   /**
+  //    * RARE usecase
+  //    * CHecked automatically with the Pure component
+  //    * Invoked immediately after updating occurs. 
+  //    * This method is not called for the initial render.
+  //    */
+  //   return true; // if false the render, getSnapshotBeforeUpdate and componentDidUpdate methods wont be called
+  // }
 
   getSnapshotBeforeUpdate(prevProps: {}, prevState: {}) {
+    console.log('getSnapshotBeforeUpdate, prevProps and state: ', prevProps, prevState);
+    
     /**
      * RARE Usecase
      * invoked right before the most recently rendered output is committed to e.g. the DOM.
@@ -72,6 +94,8 @@ class Home extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps: {}, prevState: {}, snapshot: {}) {
+    console.log('did update,  prevProps and state: ', prevProps, prevState, snapshot);
+    
     /**
      * a good place to do network requests as long as you compare the current props to previous props 
      * (e.g. a network request may not be necessary if the props have not changed).
@@ -92,6 +116,8 @@ class Home extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    console.log('unmount');
+    
     /**
      * Clean up code
      * unsubscribe and all
