@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.sass';
-import Dashboard from '../Dashboard/dashboard';
+import { useParams } from 'react-router-dom';
 
 /**
  * React.PureComponent is similar to React.Component. 
@@ -8,15 +8,17 @@ import Dashboard from '../Dashboard/dashboard';
  * but React.PureComponent implements it with a shallow prop and state comparison
  */
 class Home extends React.PureComponent {
-  constructor(public props: {}) {
+  constructor(props) {
     super(props);
-
+    console.log('====================================');
+    console.log(props);
+    console.log('====================================');
     this.state = {
       data: ''
     };
   }
 
-  static getDerivedStateFromProps(latestprops: any, lateststate: any) {
+  static getDerivedStateFromProps(latestprops, lateststate) {
     console.log('getDerivedStateFromProps', latestprops, lateststate);
     return {
       abc: 'a'
@@ -43,18 +45,14 @@ class Home extends React.PureComponent {
      */
     return (
     <div>
-     <Dashboard></Dashboard>
+      Home it is {this.props.path}
     </div>
     );
   }
 
   componentDidMount() {
-    console.log('did mount');
-
-    this.setState({
-      data: 'abc'
-    });
-    
+    console.log('did mount');    
+    console.log(window.location.search)
     /**
      * Invoked immediately after a component is mounted (inserted into the DOM tree)
      * For side-effects or subscriptions(API calls) 
@@ -79,7 +77,7 @@ class Home extends React.PureComponent {
   //   return true; // if false the render, getSnapshotBeforeUpdate and componentDidUpdate methods wont be called
   // }
 
-  getSnapshotBeforeUpdate(prevProps: {}, prevState: {}) {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('getSnapshotBeforeUpdate, prevProps and state: ', prevProps, prevState);
     
     /**
@@ -94,7 +92,7 @@ class Home extends React.PureComponent {
     return null; // null if you dont want any snapshot
   }
 
-  componentDidUpdate(prevProps: {}, prevState: {}, snapshot: {}) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('did update,  prevProps and state: ', prevProps, prevState, snapshot);
     
     /**
@@ -103,12 +101,12 @@ class Home extends React.PureComponent {
      */
   }
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
-  componentDidCatch(error: any, info: any) {
+  componentDidCatch(error, info) {
     // Example "componentStack":
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
