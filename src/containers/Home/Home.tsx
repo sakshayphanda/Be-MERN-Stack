@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.sass';
+import Dashboard from '../Dashboard/dashboard';
 
 /**
  * React.PureComponent is similar to React.Component. 
@@ -42,7 +43,7 @@ class Home extends React.PureComponent {
      */
     return (
     <div>
-      Home it is
+     <Dashboard></Dashboard>
     </div>
     );
   }
